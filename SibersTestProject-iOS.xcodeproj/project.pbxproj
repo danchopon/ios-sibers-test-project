@@ -7,19 +7,39 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B569390B058CB02DAE9BB9E7 /* Pods_SibersTestProject_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBDC69847E4DAF7DCE6209C5 /* Pods_SibersTestProject_iOS.framework */; };
 		E41E652422CCB6F300DFDA89 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41E652322CCB6F300DFDA89 /* AppDelegate.swift */; };
 		E41E652622CCB6F300DFDA89 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41E652522CCB6F300DFDA89 /* ViewController.swift */; };
 		E41E652B22CCB6F500DFDA89 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E41E652A22CCB6F500DFDA89 /* Assets.xcassets */; };
 		E41E652E22CCB6F500DFDA89 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E41E652C22CCB6F500DFDA89 /* LaunchScreen.storyboard */; };
+		E41E653A22CCD04300DFDA89 /* SearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41E653922CCD04300DFDA89 /* SearchController.swift */; };
+		E41E653C22CCD80900DFDA89 /* SearchResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41E653B22CCD80900DFDA89 /* SearchResultCell.swift */; };
+		E41E653E22CCD85600DFDA89 /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41E653D22CCD85600DFDA89 /* SearchResult.swift */; };
+		E41E654022CCDAA700DFDA89 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41E653F22CCDAA700DFDA89 /* Service.swift */; };
+		E41E654222CCDB8100DFDA89 /* BaseTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41E654122CCDB8100DFDA89 /* BaseTabBarController.swift */; };
+		E4C211C822CCF369004B7127 /* SignInController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C211C722CCF369004B7127 /* SignInController.swift */; };
+		E4F4CF1B22CCF62400340076 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F4CF1A22CCF62400340076 /* Constants.swift */; };
+		E4F4CF1E22CCFBCB00340076 /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F4CF1D22CCFBCB00340076 /* ProfileController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		52A4276AAE421EC7FB20145B /* Pods-SibersTestProject-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SibersTestProject-iOS.debug.xcconfig"; path = "Target Support Files/Pods-SibersTestProject-iOS/Pods-SibersTestProject-iOS.debug.xcconfig"; sourceTree = "<group>"; };
+		8F56BBC39FBC02009C7E041A /* Pods-SibersTestProject-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SibersTestProject-iOS.release.xcconfig"; path = "Target Support Files/Pods-SibersTestProject-iOS/Pods-SibersTestProject-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		E41E652022CCB6F300DFDA89 /* SibersTestProject-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SibersTestProject-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E41E652322CCB6F300DFDA89 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E41E652522CCB6F300DFDA89 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		E41E652A22CCB6F500DFDA89 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E41E652D22CCB6F500DFDA89 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E41E652F22CCB6F500DFDA89 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E41E653922CCD04300DFDA89 /* SearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SearchController.swift; path = ../SearchController.swift; sourceTree = "<group>"; };
+		E41E653B22CCD80900DFDA89 /* SearchResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultCell.swift; sourceTree = "<group>"; };
+		E41E653D22CCD85600DFDA89 /* SearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
+		E41E653F22CCDAA700DFDA89 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
+		E41E654122CCDB8100DFDA89 /* BaseTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTabBarController.swift; sourceTree = "<group>"; };
+		E4C211C722CCF369004B7127 /* SignInController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInController.swift; sourceTree = "<group>"; };
+		E4F4CF1A22CCF62400340076 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		E4F4CF1D22CCFBCB00340076 /* ProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
+		EBDC69847E4DAF7DCE6209C5 /* Pods_SibersTestProject_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SibersTestProject_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -27,17 +47,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B569390B058CB02DAE9BB9E7 /* Pods_SibersTestProject_iOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		262AC32AFFD5EE026D3B4F1D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				52A4276AAE421EC7FB20145B /* Pods-SibersTestProject-iOS.debug.xcconfig */,
+				8F56BBC39FBC02009C7E041A /* Pods-SibersTestProject-iOS.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		51889153827B96495C65CEBF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EBDC69847E4DAF7DCE6209C5 /* Pods_SibersTestProject_iOS.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		E41E651722CCB6F300DFDA89 = {
 			isa = PBXGroup;
 			children = (
 				E41E652222CCB6F300DFDA89 /* SibersTestProject-iOS */,
 				E41E652122CCB6F300DFDA89 /* Products */,
+				262AC32AFFD5EE026D3B4F1D /* Pods */,
+				51889153827B96495C65CEBF /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -52,6 +92,11 @@
 		E41E652222CCB6F300DFDA89 /* SibersTestProject-iOS */ = {
 			isa = PBXGroup;
 			children = (
+				E4C211C922CCF5D8004B7127 /* Constants */,
+				E41E653822CCCB3400DFDA89 /* Service */,
+				E41E653722CCCA8900DFDA89 /* Controller */,
+				E41E653622CCCA8100DFDA89 /* View */,
+				E41E653522CCCA7C00DFDA89 /* Model */,
 				E41E652322CCB6F300DFDA89 /* AppDelegate.swift */,
 				E41E652522CCB6F300DFDA89 /* ViewController.swift */,
 				E41E652A22CCB6F500DFDA89 /* Assets.xcassets */,
@@ -61,6 +106,65 @@
 			path = "SibersTestProject-iOS";
 			sourceTree = "<group>";
 		};
+		E41E653522CCCA7C00DFDA89 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E41E653D22CCD85600DFDA89 /* SearchResult.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		E41E653622CCCA8100DFDA89 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E41E653B22CCD80900DFDA89 /* SearchResultCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		E41E653722CCCA8900DFDA89 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				E4F4CF1C22CCFBB800340076 /* Profile */,
+				E41E654422CCDC5A00DFDA89 /* Search */,
+				E41E654122CCDB8100DFDA89 /* BaseTabBarController.swift */,
+				E4C211C722CCF369004B7127 /* SignInController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		E41E653822CCCB3400DFDA89 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				E41E653F22CCDAA700DFDA89 /* Service.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		E41E654422CCDC5A00DFDA89 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				E41E653922CCD04300DFDA89 /* SearchController.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		E4C211C922CCF5D8004B7127 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				E4F4CF1A22CCF62400340076 /* Constants.swift */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
+		E4F4CF1C22CCFBB800340076 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				E4F4CF1D22CCFBCB00340076 /* ProfileController.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -68,9 +172,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E41E653222CCB6F500DFDA89 /* Build configuration list for PBXNativeTarget "SibersTestProject-iOS" */;
 			buildPhases = (
+				4A07021F01294E65E50ABE61 /* [CP] Check Pods Manifest.lock */,
 				E41E651C22CCB6F300DFDA89 /* Sources */,
 				E41E651D22CCB6F300DFDA89 /* Frameworks */,
 				E41E651E22CCB6F300DFDA89 /* Resources */,
+				7CE3890DA736DD3756300034 /* [CP] Embed Pods Frameworks */,
+				02EB9D071F3732CA3AEB8CEB /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -126,13 +233,92 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		02EB9D071F3732CA3AEB8CEB /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SibersTestProject-iOS/Pods-SibersTestProject-iOS-resources.sh",
+				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleSignIn.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SibersTestProject-iOS/Pods-SibersTestProject-iOS-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4A07021F01294E65E50ABE61 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SibersTestProject-iOS-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7CE3890DA736DD3756300034 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SibersTestProject-iOS/Pods-SibersTestProject-iOS-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SibersTestProject-iOS/Pods-SibersTestProject-iOS-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		E41E651C22CCB6F300DFDA89 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E41E654222CCDB8100DFDA89 /* BaseTabBarController.swift in Sources */,
 				E41E652622CCB6F300DFDA89 /* ViewController.swift in Sources */,
 				E41E652422CCB6F300DFDA89 /* AppDelegate.swift in Sources */,
+				E41E653E22CCD85600DFDA89 /* SearchResult.swift in Sources */,
+				E41E653C22CCD80900DFDA89 /* SearchResultCell.swift in Sources */,
+				E4F4CF1E22CCFBCB00340076 /* ProfileController.swift in Sources */,
+				E4C211C822CCF369004B7127 /* SignInController.swift in Sources */,
+				E41E653A22CCD04300DFDA89 /* SearchController.swift in Sources */,
+				E41E654022CCDAA700DFDA89 /* Service.swift in Sources */,
+				E4F4CF1B22CCF62400340076 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -268,6 +454,7 @@
 		};
 		E41E653322CCB6F500DFDA89 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 52A4276AAE421EC7FB20145B /* Pods-SibersTestProject-iOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -286,6 +473,7 @@
 		};
 		E41E653422CCB6F500DFDA89 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8F56BBC39FBC02009C7E041A /* Pods-SibersTestProject-iOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
