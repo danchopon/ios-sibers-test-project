@@ -1,24 +1,25 @@
 //
-//  SearchResultCell.swift
+//  TrendingCell.swift
 //  SibersTestProject-iOS
 //
-//  Created by Daniyar Erkinov on 7/3/19.
+//  Created by Daniyar Erkinov on 7/6/19.
 //  Copyright © 2019 Daniyar Erkinov. All rights reserved.
 //
 
 import UIKit
 
-class SearchResultCell: UICollectionViewCell {
+class TrendingCell: UICollectionViewCell {
   
-  var result: SearchItem! {
+  var result: TrendingItem! {
     didSet {
-      let imageUrl = result.snippet?.thumbnails.medium.url
+      let imageUrl = result.snippet.thumbnails.medium.url
       
-      thumbnailImageView.loadImageUsingCache(withUrl: imageUrl!)
+      thumbnailImageView.loadImageUsingCache(withUrl: imageUrl)
       
-      titleLabel.text = result.snippet?.title
-      channelNameLabel.text = result.snippet?.channelTitle
-      viewsLabel.text = "1000 views"
+      titleLabel.text = result.snippet.title
+      channelNameLabel.text = result.snippet.channelTitle
+      guard let viewCount = Double(result.statistics.viewCount) else { return }
+      viewsLabel.text = "\(viewCount.kmFormatted) views"
     }
   }
   
@@ -40,16 +41,14 @@ class SearchResultCell: UICollectionViewCell {
   
   let thumbnailImageView: UIImageView = {
     let iv = UIImageView()
-    iv.widthAnchor.constraint(equalToConstant: 120).isActive = true
-    iv.heightAnchor.constraint(equalToConstant: 90).isActive = true
     iv.clipsToBounds = true
-    iv.contentMode = .scaleAspectFit
+    iv.contentMode = .scaleAspectFill
     return iv
   }()
   
   let titleLabel: UILabel = {
     let label = UILabel()
-    label.numberOfLines = 3
+    label.numberOfLines = 2
     return label
   }()
   
@@ -62,32 +61,41 @@ class SearchResultCell: UICollectionViewCell {
   
   let viewsLabel: UILabel = {
     let label = UILabel()
-    label.font = UIFont.systemFont(ofSize: 13)
+    label.font = UIFont.systemFont(ofSize: 15)
+    label.textColor = .darkGray
+    return label
+  }()
+  
+  let dotLabel: UILabel = {
+    let label = UILabel()
+    label.text = "•"
+    label.font = UIFont.systemFont(ofSize: 12)
     label.textColor = .darkGray
     return label
   }()
   
   override init(frame: CGRect) {
     super.init(frame: frame)
-        
-    let stackView = UIStackView(arrangedSubviews: [
+    
+    let stackView = VerticalStackView(arrangedSubviews: [
       thumbnailImageView,
-      VerticalStackView(arrangedSubviews: [
-        titleLabel,
-        HorizontalStackView(arrangedSubviews: [
-          channelNameLabel,
-          viewsLabel
-          ], spacing: 0, alignment: .leading)
-        ], spacing: 4)])
-    stackView.spacing = 8
-    stackView.alignment = .center
+      titleLabel,
+      HorizontalStackView(arrangedSubviews: [
+        viewsLabel, dotLabel, channelNameLabel
+        ], spacing: 4, alignment: .center)
+      ], spacing: 8)
+    
     stackView.translatesAutoresizingMaskIntoConstraints = false
     
     addSubview(stackView)
-    stackView.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
-    stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10).isActive = true
-    stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10).isActive = true
+    stackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10).isActive = true
+    stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
+    stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true
     stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
+    
+    thumbnailImageView.translatesAutoresizingMaskIntoConstraints = false
+    thumbnailImageView.widthAnchor.constraint(equalTo: contentView.widthAnchor).isActive = true
+    
   }
   
   required init?(coder aDecoder: NSCoder) {

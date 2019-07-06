@@ -13,14 +13,14 @@ struct TrendingResponse: Decodable {
   let etag: String
   let nextPageToken: String?
   let pageInfo: PageInfo
-  let items: [Item]
+  let items: [TrendingItem]
 }
 
 struct PageInfo: Decodable {
   let totalResults, resultsPerPage: Int
 }
 
-struct Item: Decodable {
+struct TrendingItem: Decodable {
   let id: String
   let snippet: Snippet
   let statistics: Statistics

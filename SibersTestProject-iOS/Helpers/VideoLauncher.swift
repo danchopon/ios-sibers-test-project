@@ -6,4 +6,12 @@
 //  Copyright © 2019 Daniyar Erkinov. All rights reserved.
 //
 
-import Foundation
+import UIKit
+
+class VideoLauncher: NSObject {
+  
+  func showVideoPlayer() {
+    print(123)
+  }
+  
+}

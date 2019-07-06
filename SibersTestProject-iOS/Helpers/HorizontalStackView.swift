@@ -18,6 +18,8 @@ class HorizontalStackView: UIStackView {
     self.spacing = spacing
     self.axis = .horizontal
     self.alignment = alignment
+    self.semanticContentAttribute = .forceRightToLeft
+
   }
   
   required init(coder: NSCoder) {
