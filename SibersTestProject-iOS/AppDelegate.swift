@@ -12,7 +12,6 @@ import GoogleSignIn
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
 
-
   var window: UIWindow?
 
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -45,7 +44,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
       let givenName = user.profile.givenName
       let familyName = user.profile.familyName
       let email = user.profile.email
+      let accessToken = user.authentication.accessToken
       
+      UserDefaults.standard.set(accessToken, forKey: "accessToken")
       UserDefaults.standard.set(idToken, forKey: "idToken")
       UserDefaults.standard.set(fullName, forKey: "fullName")
       

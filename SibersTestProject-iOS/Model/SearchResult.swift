@@ -9,14 +9,24 @@
 import Foundation
 
 struct SearchResultResponse: Decodable {
-  let resultCount: Int
-  let results: [SearchResult]
+  let kind, etag, nextPageToken, regionCode: String
+  let pageInfo: PageInfo
+  let items: [SearchItem]
 }
 
-struct SearchResult: Decodable {
-  let trackName: String
-  let primaryGenreName: String
-  let averageUserRating: Float?
-  let screenshotUrls: [String]
-  let artworkUrl100: String
+struct SearchItem: Decodable {
+  let etag: String
+  let id: ID?
+  let snippet: Snippet?
+}
+
+struct ID: Decodable {
+  let kind: IDKind
+  let channelId: String?
+  let videoId: String?
+}
+
+enum IDKind: String, Codable {
+  case youtubeChannel = "youtube#channel"
+  case youtubeVideo = "youtube#video"
 }

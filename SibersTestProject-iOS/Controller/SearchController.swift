@@ -48,9 +48,6 @@ class SearchController: UICollectionViewController {
   
   fileprivate func setupConstraints() {
     let enterSearchTermLabelConstraints = [
-//      enterSearchTermLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 100),
-//      enterSearchTermLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50),
-//      enterSearchTermLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 50)
       enterSearchTermLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
       enterSearchTermLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor)
     ]
@@ -65,20 +62,7 @@ class SearchController: UICollectionViewController {
     searchController.searchBar.delegate = self
   }
 
-  fileprivate var results = [SearchResult]()
-  
-  fileprivate func fetchITunesApps() {
-//    Service.shared.fetchApps(searchTerm: "twitter") { (res, err) in
-//      if let err = err {
-//        print("Failed to fetch apps:", err)
-//        return
-//      }
-//      self.results = res?.results ?? []
-//      DispatchQueue.main.async {
-//        self.collectionView.reloadData()
-//      }
-//    }
-  }
+  fileprivate var results = [SearchItem]()
   
   override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
     enterSearchTermLabel.isHidden = results.count != 0
@@ -95,23 +79,36 @@ class SearchController: UICollectionViewController {
 
 extension SearchController: UICollectionViewDelegateFlowLayout {
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-    return .init(width: view.frame.width, height: 325)
+    return .init(width: view.frame.width, height: 80)
+  }
+  
+  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+    return .init(top: 0, left: 0, bottom: 0, right: 0)
   }
 }
 
 extension SearchController: UISearchBarDelegate {
   
-  func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-    print(searchText)
-    
+//  func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+//    print(searchText)
+//
 //    timer?.invalidate()
 //    timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { (_) in
-//      Service.shared.fetchApps(searchTerm: searchText) { (res, err) in
-//        self.results = res?.results ?? []
+//      Service.shared.fetchFoundVideos(searchTerm: searchText) { (res, err) in
+//        self.results = res?.items ?? []
 //        DispatchQueue.main.async {
 //          self.collectionView.reloadData()
 //        }
 //      }
 //    })
+//  }
+  
+  func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+    Service.shared.fetchFoundVideos(searchTerm: searchBar.text!) { (res, err) in
+      self.results = res?.items ?? []
+      DispatchQueue.main.async {
+        self.collectionView.reloadData()
+      }
+    }
   }
 }

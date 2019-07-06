@@ -16,6 +16,7 @@ class SignInController: UIViewController, GIDSignInUIDelegate {
     view.backgroundColor = .white
     
     GIDSignIn.sharedInstance().uiDelegate = self
+    GIDSignIn.sharedInstance().scopes = Service.scopes
     GIDSignIn.sharedInstance().signInSilently()
         
     let gSignIn = GIDSignInButton(frame: CGRect(x: 0, y: 0, width: 230, height: 48))
