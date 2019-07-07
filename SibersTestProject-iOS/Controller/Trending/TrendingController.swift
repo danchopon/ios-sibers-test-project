@@ -34,7 +34,6 @@ class TrendingController: UICollectionViewController {
         print("Trending videos err: ", err)
       }
       self.results = res?.items ?? []
-      print("results: \(self.results)")
       DispatchQueue.main.async {
         self.collectionView.reloadData()
       }
@@ -54,6 +53,11 @@ class TrendingController: UICollectionViewController {
     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! TrendingCell
     cell.result = results[indexPath.item]
     return cell
+  }
+  
+  override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    let detailsVC = VideoDetailsController(id: results[indexPath.item].id)
+    self.navigationController?.pushViewController(detailsVC, animated: true)
   }
   
 }

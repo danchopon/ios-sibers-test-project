@@ -22,6 +22,7 @@
 		E44F882022CF7BE100FA56A8 /* HorizontalStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44F881F22CF7BE100FA56A8 /* HorizontalStackView.swift */; };
 		E44F882222D0B5CB00FA56A8 /* VideoLauncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44F882122D0B5CB00FA56A8 /* VideoLauncher.swift */; };
 		E44F882422D0B6B200FA56A8 /* TrendingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44F882322D0B6B200FA56A8 /* TrendingCell.swift */; };
+		E4650C9A22D14CA600876073 /* VideoDetailsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4650C9922D14CA600876073 /* VideoDetailsController.swift */; };
 		E4C211C822CCF369004B7127 /* SignInController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C211C722CCF369004B7127 /* SignInController.swift */; };
 		E4F4CF1B22CCF62400340076 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F4CF1A22CCF62400340076 /* Constants.swift */; };
 		E4F4CF1E22CCFBCB00340076 /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F4CF1D22CCFBCB00340076 /* ProfileController.swift */; };
@@ -48,6 +49,7 @@
 		E44F881F22CF7BE100FA56A8 /* HorizontalStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalStackView.swift; sourceTree = "<group>"; };
 		E44F882122D0B5CB00FA56A8 /* VideoLauncher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoLauncher.swift; sourceTree = "<group>"; };
 		E44F882322D0B6B200FA56A8 /* TrendingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingCell.swift; sourceTree = "<group>"; };
+		E4650C9922D14CA600876073 /* VideoDetailsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoDetailsController.swift; sourceTree = "<group>"; };
 		E4C211C722CCF369004B7127 /* SignInController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInController.swift; sourceTree = "<group>"; };
 		E4F4CF1A22CCF62400340076 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		E4F4CF1D22CCFBCB00340076 /* ProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
@@ -142,6 +144,7 @@
 		E41E653722CCCA8900DFDA89 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				E44F882522D14C0400FA56A8 /* Details */,
 				E4F4CF1F22CD279D00340076 /* Trending */,
 				E4F4CF1C22CCFBB800340076 /* Profile */,
 				E41E654422CCDC5A00DFDA89 /* Search */,
@@ -165,6 +168,14 @@
 				E41E653922CCD04300DFDA89 /* SearchController.swift */,
 			);
 			path = Search;
+			sourceTree = "<group>";
+		};
+		E44F882522D14C0400FA56A8 /* Details */ = {
+			isa = PBXGroup;
+			children = (
+				E4650C9922D14CA600876073 /* VideoDetailsController.swift */,
+			);
+			path = Details;
 			sourceTree = "<group>";
 		};
 		E4C211C922CCF5D8004B7127 /* Constants */ = {
@@ -348,6 +359,7 @@
 			files = (
 				E4F4CF2322CF5C7500340076 /* Trending.swift in Sources */,
 				E4F4CF2122CD27AC00340076 /* TrendingController.swift in Sources */,
+				E4650C9A22D14CA600876073 /* VideoDetailsController.swift in Sources */,
 				E41E654222CCDB8100DFDA89 /* BaseTabBarController.swift in Sources */,
 				E41E652622CCB6F300DFDA89 /* ViewController.swift in Sources */,
 				E41E652422CCB6F300DFDA89 /* AppDelegate.swift in Sources */,

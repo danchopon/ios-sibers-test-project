@@ -16,6 +16,13 @@ struct TrendingResponse: Decodable {
   let items: [TrendingItem]
 }
 
+struct VideoResponse: Decodable {
+  let kind: String
+  let etag: String
+  let pageInfo: PageInfo
+  let items: [TrendingItem]
+}
+
 struct PageInfo: Decodable {
   let totalResults, resultsPerPage: Int
 }

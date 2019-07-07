@@ -20,7 +20,7 @@ class Service {
   private let baseUrl = "https://www.googleapis.com/youtube/v3"
   
   func fetchTrendingVideos(completion: @escaping (TrendingResponse?, Error?) -> ()) {
-    let urlString = "https://www.googleapis.com/youtube/v3/videos"
+    let urlString = "\(baseUrl)/videos"
     
     let parameters = [
       "part": "snippet+contentDetails+statistics",
@@ -30,26 +30,6 @@ class Service {
     ]
     
     fetchGenericJSONData(urlString: urlString, parameters: parameters, completion: completion)
-  }
-  
-  func fetchPlaylists(completion: @escaping (TrendingResponse?, Error?) -> ()) {
-    let urlString = "\(baseUrl)/playlistItems"
-    
-//    let testString = "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet%2CcontentDetails&maxResults=25&playlistId=PLBCF2DAC6FFB574DE&key=\(API_KEY)"
-    
-//    let testString = "https://www.googleapis.com/youtube/v3/playlists?part=snippet%2CcontentDetails&channelId=UC_x5XG1OV2P6uZZ5FSM9Ttw&maxResults=25&key=\(API_KEY)"
-    
-    let playlistId = "PLBCF2DAC6FFB574DE"
-    
-    let parameters = [
-      "part": "snippet",
-      "maxResults": "25",
-      "playlistId": playlistId,
-      "key": API_KEY
-    ]
-    
-    fetchGenericJSONData(urlString: urlString, parameters: parameters, completion: completion)
-
   }
   
   func fetchFoundVideos(searchTerm: String, completion: @escaping (SearchResultResponse?, Error?) -> ()) {
@@ -66,10 +46,21 @@ class Service {
     
   }
   
+  func fetchVideo(id: String, completion: @escaping (TrendingResponse?, Error?) -> ()) {
+    let urlString = "\(baseUrl)/videos"
+    
+    let parameters = [
+      "part": "snippet+contentDetails+statistics",
+      "id": id,
+      "key": API_KEY
+    ]
+    
+    fetchGenericJSONData(urlString: urlString, parameters: parameters, completion: completion)
+  }
+  
   func fetchGenericJSONData<T: Decodable>(urlString: String, parameters: [String: String], completion: @escaping (T?, Error?) -> ()) {
     
     var components = URLComponents(string: urlString)!
-    print("components: \(components)")
     components.queryItems = [URLQueryItem]()
     
     for (key, value) in parameters {
@@ -100,7 +91,7 @@ class Service {
       
       guard let data = data else { return }
       
-      print(String(data: data, encoding: .utf8))
+//      print(String(data: data, encoding: .utf8))
       
       do {
         let objects = try JSONDecoder().decode(T.self, from: data)
