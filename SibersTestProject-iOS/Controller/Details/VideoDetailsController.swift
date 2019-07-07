@@ -39,12 +39,6 @@ class VideoDetailsController: UIViewController, WKNavigationDelegate {
     return view
   }()
   
-  private lazy var stackView: UIStackView = {
-    let sv = UIStackView()
-    sv.translatesAutoresizingMaskIntoConstraints = false
-    return sv
-  }()
-  
   private lazy var videoView: UIView = {
     let view = UIView()
     view.translatesAutoresizingMaskIntoConstraints = false
@@ -77,6 +71,30 @@ class VideoDetailsController: UIViewController, WKNavigationDelegate {
     return label
   }()
   
+  private lazy var viewsCount: UILabel = {
+    let label = UILabel()
+    label.translatesAutoresizingMaskIntoConstraints = false
+    label.textColor = .darkGray
+    label.font = UIFont.systemFont(ofSize: 14)
+    return label
+  }()
+  
+  private lazy var likesCount: UILabel = {
+    let label = UILabel()
+    label.translatesAutoresizingMaskIntoConstraints = false
+    label.textColor = .darkGray
+    label.font = UIFont.systemFont(ofSize: 14)
+    return label
+  }()
+  
+  private lazy var dislikesCount: UILabel = {
+    let label = UILabel()
+    label.translatesAutoresizingMaskIntoConstraints = false
+    label.textColor = .darkGray
+    label.font = UIFont.systemFont(ofSize: 14)
+    return label
+  }()
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     getVideoInformation()
@@ -104,7 +122,9 @@ class VideoDetailsController: UIViewController, WKNavigationDelegate {
   
   private func setupViews() {
     view.backgroundColor = .white
-    
+    informationView.addSubview(viewsCount)
+    informationView.addSubview(likesCount)
+    informationView.addSubview(dislikesCount)
     informationView.addSubview(titleLabel)
     informationView.addSubview(descriptionLabel)
     
@@ -153,14 +173,35 @@ class VideoDetailsController: UIViewController, WKNavigationDelegate {
       contentView.bottomAnchor.constraint(equalTo: informationView.bottomAnchor)
     ]
     NSLayoutConstraint.activate(informationViewConstraints)
+    
+    let viewsCountConstraints = [
+      viewsCount.topAnchor.constraint(equalTo: informationView.topAnchor, constant: 8),
+      viewsCount.leadingAnchor.constraint(equalTo: informationView.leadingAnchor),
+      informationView.trailingAnchor.constraint(equalTo: viewsCount.trailingAnchor),
+    ]
+    NSLayoutConstraint.activate(viewsCountConstraints)
+    
+    let likesCountConstraints = [
+      likesCount.topAnchor.constraint(equalTo: viewsCount.bottomAnchor, constant: 8),
+      likesCount.leadingAnchor.constraint(equalTo: informationView.leadingAnchor),
+      informationView.trailingAnchor.constraint(equalTo: likesCount.trailingAnchor),
+    ]
+    NSLayoutConstraint.activate(likesCountConstraints)
+    
+    let dislikesCountConstraints = [
+      dislikesCount.topAnchor.constraint(equalTo: likesCount.bottomAnchor, constant: 8),
+      dislikesCount.leadingAnchor.constraint(equalTo: informationView.leadingAnchor),
+      informationView.trailingAnchor.constraint(equalTo: dislikesCount.trailingAnchor),
+    ]
+    NSLayoutConstraint.activate(dislikesCountConstraints)
 
     let titleLabelConstraints = [
-      titleLabel.topAnchor.constraint(equalTo: informationView.topAnchor, constant: 8),
+      titleLabel.topAnchor.constraint(equalTo: dislikesCount.bottomAnchor, constant: 8),
       titleLabel.leadingAnchor.constraint(equalTo: informationView.leadingAnchor),
       informationView.trailingAnchor.constraint(equalTo: titleLabel.trailingAnchor),
     ]
     NSLayoutConstraint.activate(titleLabelConstraints)
-
+    
     let descriptionLabelConstraints = [
       descriptionLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 16),
       descriptionLabel.leadingAnchor.constraint(equalTo: informationView.leadingAnchor),
@@ -178,6 +219,14 @@ class VideoDetailsController: UIViewController, WKNavigationDelegate {
       
       DispatchQueue.main.async {
         self.titleLabel.text = res?.items[0].snippet.title
+        
+        guard let viewCount = Double(res!.items[0].statistics.viewCount) else { return }
+        guard let likesCount = Double(res!.items[0].statistics.likeCount) else { return }
+        guard let dislikesCount = Double(res!.items[0].statistics.dislikeCount) else { return }
+        
+        self.viewsCount.text = "Views: \(viewCount.kmFormatted)"
+        self.likesCount.text = "Likes: \(likesCount.kmFormatted)"
+        self.dislikesCount.text = "Dislikes: \(dislikesCount.kmFormatted)"
         
         let attributedString = NSMutableAttributedString(string: (res?.items[0].snippet.description)!)
         let paragraphStyle = NSMutableParagraphStyle()

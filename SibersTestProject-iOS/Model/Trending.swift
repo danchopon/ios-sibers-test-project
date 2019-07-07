@@ -11,7 +11,7 @@ import Foundation
 struct TrendingResponse: Decodable {
   let kind: String
   let etag: String
-  let nextPageToken: String?
+  var nextPageToken: String?
   let pageInfo: PageInfo
   let items: [TrendingItem]
 }

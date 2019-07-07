@@ -11,6 +11,9 @@ import UIKit
 class SearchController: UICollectionViewController {
   
   fileprivate let cellId = "cellId"
+  fileprivate let footerId = "footerId"
+  
+  fileprivate var nextPageToken: String = "token"
   
   var timer: Timer?
   
@@ -43,6 +46,7 @@ class SearchController: UICollectionViewController {
   fileprivate func setupViews() {
     collectionView.backgroundColor = .white
     collectionView.register(SearchResultCell.self, forCellWithReuseIdentifier: cellId)
+    collectionView.register(LoadingFooter.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: footerId)
     collectionView.addSubview(enterSearchTermLabel)
   }
   
@@ -69,10 +73,50 @@ class SearchController: UICollectionViewController {
     return results.count
   }
   
+  override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+    let footer = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: footerId, for: indexPath)
+    return footer
+  }
+  
+  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
+    return .init(width: view.frame.width, height: 100)
+  }
+  
+  var isPaginating = false
+  
   override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! SearchResultCell
     cell.result = results[indexPath.item]
+    
+    if indexPath.item == results.count - 1 && !isPaginating {
+      
+      isPaginating = true
+      
+      Service.shared.fetchNextFoundVideos(nextPageToken: nextPageToken) { (res, err) in
+        if let err = err {
+          print("Cannot fetch next videos: ", err)
+        }
+        
+        sleep(2)
+        if let nextPageToken = res?.nextPageToken {
+          self.nextPageToken = nextPageToken
+          self.results += res!.items
+          DispatchQueue.main.async {
+            self.collectionView.reloadData()
+          }
+          self.isPaginating = false
+        }
+        
+      }
+      
+    }
+    
     return cell
+  }
+  
+  override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    let detailsVC = VideoDetailsController(id: results[indexPath.item].id!.videoId!)
+    self.navigationController?.pushViewController(detailsVC, animated: true)
   }
   
 }
@@ -89,23 +133,14 @@ extension SearchController: UICollectionViewDelegateFlowLayout {
 
 extension SearchController: UISearchBarDelegate {
   
-//  func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-//    print(searchText)
-//
-//    timer?.invalidate()
-//    timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { (_) in
-//      Service.shared.fetchFoundVideos(searchTerm: searchText) { (res, err) in
-//        self.results = res?.items ?? []
-//        DispatchQueue.main.async {
-//          self.collectionView.reloadData()
-//        }
-//      }
-//    })
-//  }
-  
   func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
     Service.shared.fetchFoundVideos(searchTerm: searchBar.text!) { (res, err) in
       self.results = res?.items ?? []
+      
+      if let nextPageToken = res?.nextPageToken {
+        self.nextPageToken = nextPageToken
+      }
+      
       DispatchQueue.main.async {
         self.collectionView.reloadData()
       }

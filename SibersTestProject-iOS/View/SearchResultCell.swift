@@ -18,7 +18,6 @@ class SearchResultCell: UICollectionViewCell {
       
       titleLabel.text = result.snippet?.title
       channelNameLabel.text = result.snippet?.channelTitle
-      viewsLabel.text = "1000 views"
     }
   }
   
@@ -60,13 +59,6 @@ class SearchResultCell: UICollectionViewCell {
     return label
   }()
   
-  let viewsLabel: UILabel = {
-    let label = UILabel()
-    label.font = UIFont.systemFont(ofSize: 13)
-    label.textColor = .darkGray
-    return label
-  }()
-  
   override init(frame: CGRect) {
     super.init(frame: frame)
         
@@ -74,10 +66,7 @@ class SearchResultCell: UICollectionViewCell {
       thumbnailImageView,
       VerticalStackView(arrangedSubviews: [
         titleLabel,
-        HorizontalStackView(arrangedSubviews: [
-          channelNameLabel,
-          viewsLabel
-          ], spacing: 0, alignment: .leading)
+        channelNameLabel
         ], spacing: 4)])
     stackView.spacing = 8
     stackView.alignment = .center

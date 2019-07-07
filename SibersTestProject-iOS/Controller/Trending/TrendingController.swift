@@ -11,8 +11,10 @@ import UIKit
 class TrendingController: UICollectionViewController {
   
   fileprivate let cellId = "cellId"
+  fileprivate let footerId = "footerId"
   
   fileprivate var results = [TrendingItem]()
+  fileprivate var nextPageToken: String = "token"
   
   init() {
     super.init(collectionViewLayout: UICollectionViewFlowLayout())
@@ -34,6 +36,11 @@ class TrendingController: UICollectionViewController {
         print("Trending videos err: ", err)
       }
       self.results = res?.items ?? []
+
+      if let nextPageToken = res?.nextPageToken {
+        self.nextPageToken = nextPageToken
+      }
+      
       DispatchQueue.main.async {
         self.collectionView.reloadData()
       }
@@ -43,15 +50,51 @@ class TrendingController: UICollectionViewController {
   fileprivate func setupViews() {
     collectionView.backgroundColor = .white
     collectionView.register(TrendingCell.self, forCellWithReuseIdentifier: cellId)
+    collectionView.register(LoadingFooter.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: footerId)
+  }
+  
+  override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+    let footer = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: footerId, for: indexPath)
+    return footer
+  }
+  
+  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
+    return .init(width: view.frame.width, height: 100)
   }
   
   override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
     return results.count
   }
   
+  var isPaginating = false
+  
   override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! TrendingCell
     cell.result = results[indexPath.item]
+    
+    if indexPath.item == results.count - 1 && !isPaginating {
+      
+      isPaginating = true
+
+      Service.shared.fetchNextTrendingVideos(nextPageToken: nextPageToken) { (res, err) in
+        if let err = err {
+          print("Cannot fetch next videos: ", err)
+        }
+        
+        sleep(2)
+        if let nextPageToken = res?.nextPageToken {
+          self.nextPageToken = nextPageToken
+          self.results += res!.items
+          DispatchQueue.main.async {
+            self.collectionView.reloadData()
+          }
+          self.isPaginating = false
+        }
+        
+      }
+      
+    }
+    
     return cell
   }
   

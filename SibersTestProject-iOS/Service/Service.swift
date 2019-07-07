@@ -46,6 +46,33 @@ class Service {
     
   }
   
+  func fetchNextFoundVideos(nextPageToken: String, completion: @escaping (SearchResultResponse?, Error?) -> ()) {
+    let urlString = "\(baseUrl)/search"
+    
+    let parameters = [
+      "pageToken": nextPageToken,
+      "part": "snippet",
+      "maxResults": "15",
+      "key": API_KEY
+    ]
+    
+    fetchGenericJSONData(urlString: urlString, parameters: parameters, completion: completion)
+  }
+  
+  func fetchNextTrendingVideos(nextPageToken: String, completion: @escaping (TrendingResponse?, Error?) -> ()) {
+    let urlString = "\(baseUrl)/videos"
+
+    let parameters = [
+      "part": "snippet+contentDetails+statistics",
+      "chart": "mostPopular",
+      "regionCode": "US",
+      "pageToken": nextPageToken,
+      "key":API_KEY
+    ]
+    
+    fetchGenericJSONData(urlString: urlString, parameters: parameters, completion: completion)
+  }
+  
   func fetchVideo(id: String, completion: @escaping (TrendingResponse?, Error?) -> ()) {
     let urlString = "\(baseUrl)/videos"
     
@@ -90,8 +117,6 @@ class Service {
       }
       
       guard let data = data else { return }
-      
-//      print(String(data: data, encoding: .utf8))
       
       do {
         let objects = try JSONDecoder().decode(T.self, from: data)
