@@ -73,6 +73,31 @@ class Service {
     fetchGenericJSONData(urlString: urlString, parameters: parameters, completion: completion)
   }
   
+  func fetchVideoComments(id: String, completion: @escaping (CommentResponse?, Error?) -> ()) {
+    let urlString = "\(baseUrl)/commentThreads"
+    
+    let parameters = [
+      "part": "snippet+replies",
+      "videoId": id,
+      "key":API_KEY
+    ]
+    
+    fetchGenericJSONData(urlString: urlString, parameters: parameters, completion: completion)
+  }
+  
+  func fetchNextVideoComments(id: String, nextPageToken: String, completion: @escaping (CommentResponse?, Error?) -> ()) {
+    let urlString = "\(baseUrl)/commentThreads"
+    
+    let parameters = [
+      "part": "snippet+replies",
+      "videoId": id,
+      "pageToken": nextPageToken,
+      "key":API_KEY
+    ]
+    
+    fetchGenericJSONData(urlString: urlString, parameters: parameters, completion: completion)
+  }
+  
   func fetchVideo(id: String, completion: @escaping (TrendingResponse?, Error?) -> ()) {
     let urlString = "\(baseUrl)/videos"
     

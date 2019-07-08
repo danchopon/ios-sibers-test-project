@@ -19,9 +19,6 @@ class BaseTabBarController: UITabBarController {
       createNavController(viewController: ProfileController(), title: "Profile", imageName: "profile")
     ]
     
-    if let fullName = UserDefaults.standard.string(forKey: "fullName") {
-      print("defaults savedString: \(fullName)")
-    }
   }
   
   fileprivate func createNavController(viewController: UIViewController, title: String, imageName: String) -> UIViewController {

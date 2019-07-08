@@ -11,6 +11,12 @@ import GoogleSignIn
 
 class ProfileController: UIViewController {
   
+  private lazy var userName: UILabel = {
+    let label = UILabel()
+    label.translatesAutoresizingMaskIntoConstraints = false
+    return label
+  }()
+  
   private lazy var signOutButton: UIButton = {
     let button = UIButton()
     button.translatesAutoresizingMaskIntoConstraints = false
@@ -25,6 +31,11 @@ class ProfileController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     setup()
+    
+    if let fullName = UserDefaults.standard.string(forKey: "fullName") {
+      userName.text = "Hello, \(fullName)"
+    }
+    
   }
   
   @objc func handleSignOut(_ sender: UIButton) {
@@ -49,13 +60,20 @@ class ProfileController: UIViewController {
   }
   
   private func setupViews() {
+    view.addSubview(userName)
     view.addSubview(signOutButton)
   }
   
   private func setupConstraints() {
+    let userNameConstraints = [
+      userName.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+      userName.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+    ]
+    NSLayoutConstraint.activate(userNameConstraints)
+    
     let signOutButtonConstraints = [
       signOutButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-      signOutButton.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+      signOutButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -100)
     ]
     NSLayoutConstraint.activate(signOutButtonConstraints)
   }

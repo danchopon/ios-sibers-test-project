@@ -15,6 +15,8 @@ class SearchController: UICollectionViewController {
   
   fileprivate var nextPageToken: String = "token"
   
+  fileprivate var results = [SearchItem]()
+  
   var timer: Timer?
   
   fileprivate let searchController = UISearchController(searchResultsController: nil)
@@ -65,8 +67,6 @@ class SearchController: UICollectionViewController {
     searchController.dimsBackgroundDuringPresentation = false
     searchController.searchBar.delegate = self
   }
-
-  fileprivate var results = [SearchItem]()
   
   override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
     enterSearchTermLabel.isHidden = results.count != 0
@@ -115,8 +115,10 @@ class SearchController: UICollectionViewController {
   }
   
   override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-    let detailsVC = VideoDetailsController(id: results[indexPath.item].id!.videoId!)
-    self.navigationController?.pushViewController(detailsVC, animated: true)
+    if let videoId = results[indexPath.item].id?.videoId {
+      let detailsVC = VideoDetailsController(id: videoId)
+      self.navigationController?.pushViewController(detailsVC, animated: true)
+    }
   }
   
 }

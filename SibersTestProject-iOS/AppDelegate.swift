@@ -46,8 +46,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
       let email = user.profile.email
       let accessToken = user.authentication.accessToken
       
-      UserDefaults.standard.set(accessToken, forKey: "accessToken")
-      UserDefaults.standard.set(idToken, forKey: "idToken")
       UserDefaults.standard.set(fullName, forKey: "fullName")
       
       window?.rootViewController = BaseTabBarController()

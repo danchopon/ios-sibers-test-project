@@ -16,6 +16,8 @@ class TrendingController: UICollectionViewController {
   fileprivate var results = [TrendingItem]()
   fileprivate var nextPageToken: String = "token"
   
+  var refresher:UIRefreshControl!
+  
   init() {
     super.init(collectionViewLayout: UICollectionViewFlowLayout())
   }
@@ -28,6 +30,24 @@ class TrendingController: UICollectionViewController {
     super.viewDidLoad()
     setupViews()
     fetchTrendings()
+    setupRefresher()
+  }
+  
+  private func setupRefresher() {
+    refresher = UIRefreshControl()
+    refresher.tintColor = .darkGray
+    refresher.addTarget(self, action: #selector(loadData), for: .valueChanged)
+    collectionView!.alwaysBounceVertical = true
+    collectionView!.addSubview(refresher)
+  }
+  
+  @objc func loadData() {
+    fetchTrendings()
+    stopRefresher()
+  }
+  
+  func stopRefresher() {
+    self.refresher.endRefreshing()
   }
   
   fileprivate func fetchTrendings() {
@@ -48,6 +68,7 @@ class TrendingController: UICollectionViewController {
   }
   
   fileprivate func setupViews() {
+    self.navigationController?.navigationBar.prefersLargeTitles = false
     collectionView.backgroundColor = .white
     collectionView.register(TrendingCell.self, forCellWithReuseIdentifier: cellId)
     collectionView.register(LoadingFooter.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: footerId)
